@@ -1,0 +1,27 @@
+{% extends "catalog/page.html" %}
+
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+<table>
+  <thead>
+    <tr>
+      {% for field in fields %}
+        <td>{{field|title}}</td>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for value in values %}
+      <tr>
+        {% for field in fields %}
+          <td>{{value|attr:field}}</td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

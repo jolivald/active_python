@@ -1,0 +1,16 @@
+{% extends "catalog/page.html" %}
+
+{% load filters %}
+
+{% block title %}{{title}}{% endblock %}
+
+
+{% block content %}
+
+<h3>{{title}}</h3>
+
+{% for field in fields %}
+  <p>{{field}}: <strong>{{value|attr:field}}</strong></p>
+{% endfor %}
+
+{% endblock %}
