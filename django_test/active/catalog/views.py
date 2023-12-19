@@ -4,21 +4,19 @@ from django.template import loader
 
 from .models import Collaborateur, Fonction
 
-def _display_list(request, title, all):
+def _display_list(request, objects, options):
   tpl = loader.get_template('catalog/list.html')
-  keys = [k for k in all[0].__dict__.keys() if k != '_state']
-  vals = all.__dict__.values()
+  keys = [k for k in objects[0].__dict__.keys() if k != '_state']
   ctx = {
-    'title': title,
+    'options': options,
     'fields': keys,
-    'values': all,
+    'values': objects,
   }
   return HttpResponse(tpl.render(ctx, request))
 
 def _display_detail(request, title, obj):
   tpl = loader.get_template('catalog/detail.html')
   keys = [k for k in obj.__dict__.keys() if k != '_state']
-  #vals = obj.__dict__.values()
   ctx = {
     'title': title,
     'fields': keys,
@@ -30,11 +28,12 @@ def index(request):
     return HttpResponse("Hello, world. You're at the catalog index.")
 
 def collaborateur_list(request):
-  return _display_list(
-    request,
-    'Collaborateur',
-    Collaborateur.objects.all()
-  )
+  return _display_list(request, Collaborateur.objects.all(), {
+     'title': 'Collaborateurs',
+     'detail': 'collaborateur_detail',
+     'primary': 'matricule'
+  })
+
 
 def collaborateur_detail(request, matricule):
   return _display_detail(
@@ -44,11 +43,12 @@ def collaborateur_detail(request, matricule):
   )
 
 def fonction_list(request):
-  return _display_list(
-    request,
-    'Fonction',
-    Fonction.objects.all()
-  )
+  return _display_list(request, Fonction.objects.all(), {
+     'title': 'Fonctions',
+     'detail': 'fonction_detail',
+     'primary': 'id_fonction'
+
+  })
 
 def fonction_detail(request, id):
   return _display_detail(
