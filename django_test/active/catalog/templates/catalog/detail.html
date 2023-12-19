@@ -11,7 +11,7 @@
 <hr>
 
 {% for field in fields %}
-  <p>{{field}}: <strong>{{value|attr:field}}</strong></p>
+  <p>{{field|title}}: <strong>{{value|attr:field}}</strong></p>
 {% endfor %}
 
 {% endblock %}

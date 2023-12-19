@@ -1,0 +1,45 @@
+{% extends "catalog/page.html" %}
+
+{% load filters %}
+
+{% block title %}{{options.title}}{% endblock %}
+
+{% block content %}
+
+<h3>{{options.title}}</h3>
+<hr>
+
+<ul>
+  <li>
+    <a href="{% url 'activite_list' %}">Activités</a>
+  </li>
+  <li>
+    <a href="{% url 'client_list' %}">Clients</a>
+  </li>
+  <li>
+    <a href="{% url 'collaborateur_list' %}">Collaborateurs</a>
+  </li>
+  <li>
+    <a href="{% url 'contact_list' %}">Contacts</a>
+  </li>
+  <li>
+    <a href="{% url 'contrat_list' %}">Contrats</a>
+  </li>
+  <li>
+    <a href="{% url 'document_list' %}">Documents</a>
+  </li>
+  <li>
+    <a href="{% url 'etape_list' %}">Etapes</a>
+  </li>
+  <li>
+    <a href="{% url 'fonction_list' %}">Fonctions</a>
+  </li>
+  <li>
+    <a href="{% url 'intervention_list' %}">Interventions</a>
+  </li>
+  <li>
+    <a href="{% url 'projet_list' %}">Projets</a>
+  </li>
+</ul>
+
+{% endblock %}
